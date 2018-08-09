@@ -1,1 +1,116 @@
-Under construction
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nikolaj Kappler</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale: 1.0">
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Raleway" rel="stylesheet"> 
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+			color: #dddddd;
+		}
+
+		html, body {
+			height:100%;
+			margin: 0;
+		}
+		body {
+			/* Background pattern from Toptal Subtle Patterns */
+			background-image: url("black-Linen.png");
+		}
+
+		.splitter {
+			display: flex;
+			flex-wrap: wrap;
+			width: 100%;
+			max-width: 1500px;
+			margin: auto;
+			min-height: 100%;
+			align-content: center;
+			justify-content: space-around;
+		}
+
+		.item {
+			margin: 20px;
+			width: 100%;
+			max-width: 500px;
+		}
+
+		h1, p {
+			text-align: center;
+			font-family: sans-serif;
+		}
+
+		p {
+			font-size: 24px;
+			font-family: 'Raleway';
+		}
+
+		h1, h2 {
+			font-family: 'Lobster', cursive;
+			font-size: 80px;
+			margin: 10px;
+		}
+		h2 {
+			font-size: 40px;
+		}
+
+		img {
+			margin: auto;
+			display: block;
+			max-width: 450px;
+			width: 100%;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+		}
+
+		input, textarea { 
+			border: 1px solid #ddddff;
+			box-shadow: 0 0 10px 1px rgba(50,150,255,0.5);
+			background: rgba(50,150,255,0.1);
+			line-height: 30px;
+			margin: 10px;
+			padding: 0 10px;
+			resize: none;
+		}
+
+		input[type="submit"]:hover {
+			cursor: pointer;
+			background: rgba(50,150,255,0.3);
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			if (document.location.href.indexOf("?sent") > 0) {
+				document.getElementById("sent").style.display = "block";
+			}
+		};
+	</script>
+</head>
+<body>
+<div class="splitter">
+	<div class="item">
+		<h1>Stay tuned!</h1>
+		<img src="tired.png">
+		<p>This website will be ready soon...</p>
+	</div>
+	<div class="item">
+		<h2>Contact me</h2>
+		<form action="https://formspree.io/nikolaj-kappler@web.de" method="POST">
+		    <input type="text" name="name" placeholder="Your name" required />
+		    <input type="email" name="_replyto" placeholder="Your email" required />
+		    <textarea type="input" name="message" rows="7" placeholder="Your message" required></textarea>
+		    <input type="hidden" name="_subject" value="New message from website!" />
+		    <input type="hidden" name="_next" value="nkappler.github.io?sent" />
+		    <input type="text" name="_gotcha" style="display:none" />
+		    <input type="submit" value="Send" />
+		</form> 
+		<p id="sent" style="display:none;">Thank you. Your message has been sent.</p>
+	</div>
+</div>
+</body>
+</html>
