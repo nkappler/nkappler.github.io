@@ -32,7 +32,7 @@
 		}
 
 		.item {
-			margin: 20px;
+			padding: 20px;
 			width: 100%;
 			max-width: 500px;
 		}
@@ -61,6 +61,7 @@
 			display: block;
 			max-width: 450px;
 			width: 100%;
+			padding-right:20px;
 		}
 
 		form {
@@ -82,6 +83,23 @@
 			cursor: pointer;
 			background: rgba(50,150,255,0.3);
 		}
+
+		.glasspane {
+			position: relative;
+		}
+		.glasspane::after {
+			display: inline-block;
+			content: '';
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+		.glasspane * {
+			pointer-events: none;
+		}
+
 	</style>
 	<script type="text/javascript">
 		window.onload = function() {
@@ -93,13 +111,13 @@
 </head>
 <body>
 <div class="splitter">
-	<div class="item">
+	<div class="item glasspane">
 		<h1>Stay tuned!</h1>
 		<img src="tired.png">
 		<p>This website will be ready soon...</p>
 	</div>
 	<div class="item">
-		<h2>Contact me</h2>
+		<h2 class="glasspane">Contact me</h2>
 		<form action="https://formspree.io/nikolaj-kappler@web.de" method="POST">
 		    <input type="text" name="name" placeholder="Your name" required />
 		    <input type="email" name="_replyto" placeholder="Your email" required />
@@ -109,7 +127,7 @@
 		    <input type="text" name="_gotcha" style="display:none" />
 		    <input type="submit" value="Send" />
 		</form> 
-		<p id="sent" style="display:none;">Thank you. Your message has been sent.</p>
+		<p class="glasspane" id="sent" style="display:none;">Thank you. Your message has been sent.</p>
 	</div>
 </div>
 </body>
