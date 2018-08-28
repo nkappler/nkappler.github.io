@@ -33,7 +33,7 @@
         xhttp.onreadystatechange = function() {
             startrequest = xhttp;
         };
-        xhttp.open("GET", "https://miege.feste-ip.net:35382/mc/test.php", true);
+        xhttp.open("GET", "[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/test.php", true);
         xhttp.send();
         counter = 0;
         status();
@@ -50,7 +50,7 @@
             }
             update(init);
         };
-        xhttp.open("GET", "https://miege.feste-ip.net:35382/mc/status.php", true);
+        xhttp.open("GET", "[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/status.php", true);
         xhttp.setRequestHeader("Cache-Control", "no-cache");
         xhttp.send();    	
     }
