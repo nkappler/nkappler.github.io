@@ -30,28 +30,28 @@
     	document.getElementsByClassName("loader")[0].style.display = "inline-block";
         document.getElementById("start").setAttribute("disabled", "true");
         var xhttp = new XMLHttpRequest();
-        startrequest = xhttp;
         xhttp.onreadystatechange = function() {
+            startrequest = xhttp;
         };
-        xhttp.open("GET", "https://[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/test.php", true);
+        xhttp.open("GET", "https://miege.feste-ip.net:35382/mc/test.php", true);
         xhttp.send();
         counter = 0;
         status();
     }
 
     function status(init=false) {
-        if (statusrequest) statusrequest.abort();
+        // if (statusrequest) statusrequest.abort();
         var xhttp = new XMLHttpRequest();
         statusrequest = xhttp;
         xhttp.onreadystatechange = function() {
-            if(!init && xhttp.readyState == 4 && ( xhttp.response.indexOf("Warning") >= 0 || xhttp.response.indexOf("Notice") >= 0)) {
+            if(!init && xhttp.readyState == 4 && xhttp.status == 200 && ( xhttp.response.indexOf("Warning") >= 0 || xhttp.response.indexOf("Notice") >= 0)) {
                 counter++;
                 if (counter < 10) status();
             }
             update(init);
         };
-        xhttp.open("GET", "https://[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/status.php?timestamp" + performance.now(), true);
-        // xhttp.setRequestHeader("Cache-Control", "no-cache");
+        xhttp.open("GET", "https://miege.feste-ip.net:35382/mc/status.php", true);
+        xhttp.setRequestHeader("Cache-Control", "no-cache");
         xhttp.send();    	
     }
 
