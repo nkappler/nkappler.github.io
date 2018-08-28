@@ -44,15 +44,13 @@
         var xhttp = new XMLHttpRequest();
         statusrequest = xhttp;
         xhttp.onreadystatechange = function() {
-            console.log("status change");
-            console.log(xhttp);
             if(!init && xhttp.readyState == 4 && ( xhttp.response.indexOf("Warning") >= 0 || xhttp.response.indexOf("Notice") >= 0)) {
                 counter++;
                 if (counter < 10) status();
             }
             update(init);
         };
-        xhttp.open("GET", "./status.php?timestamp" + performance.now(), true);
+        xhttp.open("GET", "https://[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/status.php?timestamp" + performance.now(), true);
         // xhttp.setRequestHeader("Cache-Control", "no-cache");
         xhttp.send();    	
     }
