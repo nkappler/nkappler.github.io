@@ -10,7 +10,7 @@ Todo
   - shelf
   - mcwebgui
 - create own repos for:
-  - slimemap
+  - ~~slimemap~~
   - mcwebgui
 
 ### Project Todos
