@@ -1,86 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<style type="text/css">
-		.loader {
-    border: 3px solid #f3f3f3; /* Light grey */
-    border-top: 3px solid #555555; /* Blue */
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    animation: spin 2s linear infinite;
-    display:none;
-    margin-left:3px;
-}
+    <meta charset="utf-8">
+    <style type="text/css">
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #555555;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            animation: spin 2s linear infinite;
+            display: none;
+            margin-left: 3px;
+        }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-	</style>
-<script>
-    var startrequest;
-    var statusrequest;
-    var interval;
-    var counter = 0;
-
-    function start() {
-
-    	document.getElementsByClassName("loader")[0].style.display = "inline-block";
-        document.getElementById("start").setAttribute("disabled", "true");
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            startrequest = xhttp;
-        };
-        xhttp.open("GET", "[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/test.php", true);
-        xhttp.send();
-        counter = 0;
-        status();
-    }
-
-    function status(init=false) {
-        // if (statusrequest) statusrequest.abort();
-        var xhttp = new XMLHttpRequest();
-        statusrequest = xhttp;
-        xhttp.onreadystatechange = function() {
-            if(!init && xhttp.readyState == 4 && xhttp.status == 200 && ( xhttp.response.indexOf("Warning") >= 0 || xhttp.response.indexOf("Notice") >= 0)) {
-                counter++;
-                if (counter < 10) status();
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
             }
-            update(init);
-        };
-        xhttp.open("GET", "[2a02:8071:29f:2f00:88bb:b130:132f:8bbe]/mc/status.php", true);
-        xhttp.setRequestHeader("Cache-Control", "no-cache");
-        xhttp.send();    	
-    }
-
-    function update(init) {
-    	if (statusrequest.response) {
-            var stat;
-            if (statusrequest.response.indexOf("Warning") >= 0) {
-                stat = {online: false};
-            } else {
-    		    stat = Object.assign({ online: true }, JSON.parse(statusrequest.response));
+            100% {
+                transform: rotate(360deg);
             }
-    		if(stat.online) {
-    	        document.getElementsByClassName("loader")[0].style.display = "none";
-                window.clearInterval(interval);
-    		} else if (init) {                
-                document.getElementById("start").removeAttribute("disabled");
+        }
+    </style>
+    <script>
+        var startrequest;
+        var statusrequest;
+        var interval;
+        var counter = 0;
+
+        function start() {
+            document.getElementsByClassName("loader")[0].style.display = "inline-block";
+            document.getElementById("start").setAttribute("disabled", "true");
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                startrequest = xhttp;
+            };
+            xhttp.open("GET", "https://miege.feste-ip.net:35382/mc/test.php", true);
+            xhttp.send();
+            counter = 0;
+            status();
+        }
+
+        function status(init = false) {
+            // if (statusrequest) statusrequest.abort();
+            var xhttp = new XMLHttpRequest();
+            statusrequest = xhttp;
+            xhttp.onreadystatechange = function () {
+                if (!init && xhttp.readyState == 4 && xhttp.status == 200 && (xhttp.response.indexOf("Warning") >= 0 || xhttp.response.indexOf("Notice") >= 0)) {
+                    counter++;
+                    if (counter < 10) status();
+                }
+                update(init);
+            };
+            xhttp.open("GET", "https://miege.feste-ip.net:35382/mc/status.php", true);
+            xhttp.setRequestHeader("Cache-Control", "no-cache");
+            xhttp.send();
+        }
+
+        function update(init) {
+            if (statusrequest.response) {
+                var stat;
+                if (statusrequest.response.indexOf("Warning") >= 0) {
+                    stat = { online: false };
+                } else {
+                    stat = Object.assign({ online: true }, JSON.parse(statusrequest.response));
+                }
+                if (stat.online) {
+                    document.getElementsByClassName("loader")[0].style.display = "none";
+                    window.clearInterval(interval);
+                } else if (init) {
+                    document.getElementById("start").removeAttribute("disabled");
+                }
+
+                var domstat = document.getElementById("status");
+                domstat.innerHTML =
+                    `<p>Status: ${stat.online ? '<span style="color:green;">online</span>' : '<span style="color:red;">offline</span>'}</p>`;
             }
+        }
 
-    		var domstat = document.getElementById("status");
-            domstat.innerHTML = 
-            `<p>Status: ${stat.online? '<span style="color:green;">online</span>' : '<span style="color:red;">offline</span>'}</p>`;
-    	}
-    }
-
-    status(true);
-</script>
+        status(true);
+    </script>
 </head>
+
 <body>
-	<div id="status"><p>Status:<span class="loader" style="display:inline-block !important"></span></p></div>
-<div><button id="start" style="float: left;" onclick="start()">Server Starten</button><div class="loader"></div></div>
+    <div id="status">
+        <p>Status:
+            <span class="loader" style="display:inline-block !important"></span>
+        </p>
+    </div>
+    <div>
+        <button id="start" style="float: left;" onclick="start()">Server Starten</button>
+        <div class="loader"></div>
+    </div>
 </body>
+
 </html>
