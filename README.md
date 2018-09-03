@@ -22,7 +22,7 @@ Todo
 - create planned features list
 
 #### slimemap
-- port to typescript
+- ~~port to typescript~~
 - make standalone
 - performance improvements and multithreading
-- use native BigInt and bigint lib as fallback
+- use native BigInt and long.js lib as fallback
