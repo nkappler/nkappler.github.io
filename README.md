@@ -1,6 +1,6 @@
 # nkappler.github.io
 
-Todo
+Todo (~~Done~~)
 ---
 
 - Landing / introduction page
@@ -25,4 +25,4 @@ Todo
 - ~~port to typescript~~
 - make standalone
 - performance improvements and multithreading
-- use native BigInt and long.js lib as fallback
+- use native BigInt and ~~long.js lib as fallback~~
