@@ -31,29 +31,41 @@ const segments = 50;
 const rings = 50;
 const globe = new THREE.Group();
 //earths tilt
-globe.rotateZ(THREE.Math.degToRad(-23.4));
+globe.rotateZ(THREE.Math.degToRad(-12));
 const north = new THREE.Vector3(0, 1, 0);
 //start animation over atlantic ocean
-globe.rotateOnAxis(north, THREE.Math.degToRad(270));
+globe.rotateOnAxis(north, THREE.Math.degToRad(-75));
 scene.add(globe);
+
+//wireframe sphere
+var geometry = new THREE.SphereGeometry(radius * 1.2, segments / 3, rings / 3);
+var wireframe = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+    color: 0x66CCFF,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.1
+}));
+globe.add(wireframe);
 
 //texture loader
 const loader = new THREE.TextureLoader();
-loader.load('../img/land_ocean_ice_cloud_2048.jpg', texture => {
-    const sphere = new THREE.SphereGeometry(radius, segments, rings);
-    const material = new THREE.MeshStandardMaterial({
-        map: texture
-    });
-    const mesh = new THREE.Mesh(sphere, material);
-    globe.add(mesh);
+const sphere = new THREE.SphereGeometry(radius, segments, rings);
+const material = new THREE.MeshPhongMaterial({
+    map: loader.load('../img/world10mp.png'),
+    bumpMap: loader.load('../img/worldbump.jpg'),
+    // bumpScale: 0.5,
+    specularMap: loader.load('../img/worldspecular.jpg')
 });
+const mesh = new THREE.Mesh(sphere, material);
+globe.add(mesh);
+
 
 globe.position.y = -HEIGHT / 10;
 globe.position.x = WIDTH / 10;
 
 
 //light setup
-const sunlight = new THREE.DirectionalLight(0xFFFFFF);
+const sunlight = new THREE.DirectionalLight(0xFFFFFF, 3);
 sunlight.position.set(globe.position.x, globe.position.y, globe.position.z);
 sunlight.position.x -= 1000;
 sunlight.position.y += 500;
