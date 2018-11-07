@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { ProgressTextureLoader } from "./ProgressTextureLoader";
 
 const container = document.querySelector("#root");
 
@@ -34,12 +35,12 @@ const globe = new THREE.Group();
 globe.rotateZ(THREE.Math.degToRad(-12));
 const north = new THREE.Vector3(0, 1, 0);
 //start animation over atlantic ocean
-globe.rotateOnAxis(north, THREE.Math.degToRad(-75));
+globe.rotateOnAxis(north, THREE.Math.degToRad(-90));
 scene.add(globe);
 
 //wireframe sphere
-var geometry = new THREE.SphereGeometry(radius * 1.2, segments / 3, rings / 3);
-var wireframe = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
+const geometry = new THREE.SphereGeometry(radius * 1.2, segments / 3, rings / 3);
+const wireframe = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
     color: 0x66CCFF,
     wireframe: true,
     transparent: true,
@@ -47,18 +48,58 @@ var wireframe = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
 }));
 globe.add(wireframe);
 
-//texture loader
-const loader = new THREE.TextureLoader();
-const sphere = new THREE.SphereGeometry(radius, segments, rings);
-const material = new THREE.MeshPhongMaterial({
-    map: loader.load('../img/world10mp.png'),
-    bumpMap: loader.load('../img/worldbump.jpg'),
-    // bumpScale: 0.5,
-    specularMap: loader.load('../img/worldspecular.jpg')
-});
-const mesh = new THREE.Mesh(sphere, material);
-globe.add(mesh);
+//texture loader TODO : use Promises instead / ProgressTextureLoader should return Texture in any case
+const texloaded = {
+    map: false,
+    bumpMap: false,
+    specularMap: false,
+    emissiveMap: false
+};
 
+const loader = new ProgressTextureLoader();
+const sphere = new THREE.SphereGeometry(radius, segments, rings);
+
+let map: THREE.Texture = null;
+let bumpMap: THREE.Texture = null;
+let specularMap: THREE.Texture = null;
+// let emissiveMap: THREE.Texture = null;
+
+loader.load('../img/world10mp.png', (tex) => {
+    map = tex;
+    texloaded.map = true;
+    updateMesh();
+}, (e) => console.log(e));
+loader.load('../img/worldbump.png', (tex) => {
+    bumpMap = tex;
+    texloaded.bumpMap = true;
+    updateMesh();
+}, (e) => console.log(e));
+loader.load('../img/worldspecular.jpg', (tex) => {
+    specularMap = tex;
+    texloaded.specularMap = true;
+    updateMesh();
+}, (e) => console.log(e));
+// loader.load('../img/5_night_8k.jpg', (tex) => {
+//     emissiveMap = tex;
+//     texloaded.emissiveMap = true;
+//     updateMesh();
+// }, (e) => console.log(e));
+
+const updateMesh = () => {
+    if (texloaded.map && texloaded.bumpMap && texloaded.specularMap) {
+        const material = new THREE.MeshPhongMaterial({
+            map,
+            bumpMap,
+            // bumpScale: 0.5,
+            specularMap,
+            // emissiveMap,
+            // emissive: 0xFFFFCC,
+            // emissiveIntensity: 0.3
+        });
+        const mesh = new THREE.Mesh(sphere, material);
+        globe.add(mesh);
+    }
+};
 
 globe.position.y = -HEIGHT / 10;
 globe.position.x = WIDTH / 10;
@@ -76,7 +117,7 @@ scene.add(sunlight);
 
 function update() {
     //rotate
-    globe.rotateOnAxis(north, -0.0002);
+    globe.rotateOnAxis(north, 0.0002);
 
     //render
     rndr.render(scene, camera);
@@ -96,4 +137,15 @@ window.addEventListener("resize", () => {
     rndr.setSize(WIDTH, HEIGHT);
     camera.aspect = ASPECT;
     camera.updateProjectionMatrix();
+
+    const factor = (1000 / Math.min(window.innerHeight, window.innerWidth));
+    document.body.style.perspective = 100 / (factor * factor) + "px";
+});
+
+window.addEventListener("mousemove", (ev) => {
+    document.getElementsByTagName('style')[0].innerHTML = `
+        .tilt {
+            transform: rotateX(${(ev.pageY / window.innerHeight) - 0.5}deg) rotateY(${-(ev.pageX / window.innerWidth) + 0.5}deg);
+        }
+    `;
 });
