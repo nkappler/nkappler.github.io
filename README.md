@@ -4,6 +4,7 @@ Todo (~~Done~~)
 ---
 
 - Landing / introduction page
+  - configure tp webpack + less compilation
 - project pages for:
   - centipede
   - slimemap
