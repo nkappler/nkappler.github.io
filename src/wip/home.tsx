@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { ProgressTextureLoader } from "./ProgressTextureLoader";
+import './styles/background.less';
 
 const container = document.querySelector("#root");
 

@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import "./styles/index.less";
 
 window.onload = function () {
     if (document.location.href.indexOf("?sent") > 0) {
