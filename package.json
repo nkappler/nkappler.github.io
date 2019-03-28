@@ -36,6 +36,7 @@
   "dependencies": {
     "css-loader": "^1.0.1",
     "less": "^3.8.1",
+    "sidebarjs": "^5.4.0",
     "style-loader": "^0.23.1",
     "three": "^0.98.0"
   }
