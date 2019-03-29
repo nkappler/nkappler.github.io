@@ -14,8 +14,11 @@ ReactDOM.render(
             <h1>Hi there!</h1>
             <p>
                 This website is still under construction.<br />
-                Placeholder Text.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore doloribus cupiditate! Exercitationem sequi sed inventore, voluptates similique nostrum quos eaque quidem dolorum cumque velit aut reiciendis est, illum corrupti?
+                However, there's already a bunch to discover =)<br />
+                Until the rest of the website is finished, why don't you have a look at my <span onClick={() => (window as any).sidebar.open()} style={{
+                    fontWeight: "bold",
+                    cursor: "pointer"
+                }}>Projects?</span>
             </p>
         </div>
         <div className="item">
