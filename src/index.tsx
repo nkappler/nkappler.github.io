@@ -11,9 +11,12 @@ window.onload = function () {
 ReactDOM.render(
     <div className="splitter">
         <div className="item">
-            <h1>Stay tuned!</h1>
-            <img src="./dist/img/tired.png" />
-            <p>This website will be ready soon...</p>
+            <h1>Hi there!</h1>
+            <p>
+                This website is still under construction.<br />
+                Placeholder Text.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore doloribus cupiditate! Exercitationem sequi sed inventore, voluptates similique nostrum quos eaque quidem dolorum cumque velit aut reiciendis est, illum corrupti?
+            </p>
         </div>
         <div className="item">
             <h2>Contact me</h2>

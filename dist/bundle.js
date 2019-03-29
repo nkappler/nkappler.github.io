@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  box-sizing: border-box;\n  color: #dddddd;\n}\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n}\nbody {\n  /* Background pattern from Toptal Subtle Patterns */\n  background-image: url('./dist/img/black-Linen.png');\n}\n#root {\n  height: 100%;\n}\n.splitter {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  max-width: 1500px;\n  margin: auto;\n  min-height: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n.item {\n  padding: 20px;\n  width: 100%;\n  max-width: 500px;\n}\nh1,\np {\n  text-align: center;\n  font-family: sans-serif;\n}\np {\n  font-size: 24px;\n  font-family: 'Raleway';\n}\nh1,\nh2 {\n  font-family: 'Lobster', cursive;\n  font-size: 80px;\n  margin: 10px;\n}\nh2 {\n  font-size: 40px;\n}\nimg {\n  margin: auto;\n  display: block;\n  max-width: 450px;\n  width: 100%;\n  padding-right: 20px;\n}\nform {\n  display: flex;\n  flex-direction: column;\n}\ninput,\ntextarea {\n  border: 1px solid #ddddff;\n  box-shadow: 0 0 10px 1px rgba(50, 150, 255, 0.5);\n  background: rgba(50, 150, 255, 0.1);\n  line-height: 30px;\n  margin: 10px;\n  padding: 0 10px;\n  resize: none;\n  height: 30px;\n  font-family: 'Raleway';\n}\ntextarea {\n  height: auto;\n}\ninput[type=\"submit\"]:hover {\n  cursor: pointer;\n  background: rgba(50, 150, 255, 0.3);\n}\n", ""]);
+exports.push([module.i, "* {\n  box-sizing: border-box;\n  color: #444;\n}\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n}\nbody {\n  /* Background pattern from Toptal Subtle Patterns */\n  background-image: url('./dist/img/shattered.png');\n}\n#root {\n  height: calc(100% - 60px);\n}\n.splitter {\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  max-width: 1500px;\n  margin: auto;\n  min-height: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n.item {\n  padding: 20px;\n  width: 100%;\n  max-width: 500px;\n}\nh1,\np {\n  text-align: center;\n  font-family: sans-serif;\n}\np {\n  font-size: 24px;\n  font-family: 'Raleway';\n}\nh1,\nh2 {\n  font-family: 'Lobster', cursive;\n  font-size: 80px;\n  margin: 10px;\n}\nh2 {\n  font-size: 40px;\n}\nimg {\n  margin: auto;\n  display: block;\n  max-width: 450px;\n  width: 100%;\n  padding-right: 20px;\n}\nform {\n  display: flex;\n  flex-direction: column;\n}\ninput,\ntextarea {\n  border: 1px solid #666;\n  box-shadow: 0 0 10px 1px rgba(80, 80, 80, 0.5);\n  background: rgba(80, 80, 80, 0.15);\n  line-height: 30px;\n  margin: 10px;\n  padding: 0 10px;\n  resize: none;\n  height: 30px;\n  font-family: 'Raleway';\n  color: #151515;\n}\ntextarea {\n  height: auto;\n}\ninput:hover,\ninput:active,\ntextarea:hover,\ntextarea:active {\n  background: rgba(250, 250, 250, 0.1);\n}\ninput[type=submit]:hover {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -721,9 +721,11 @@ window.onload = function () {
 };
 ReactDOM.render(React.createElement("div", { className: "splitter" },
     React.createElement("div", { className: "item" },
-        React.createElement("h1", null, "Stay tuned!"),
-        React.createElement("img", { src: "./dist/img/tired.png" }),
-        React.createElement("p", null, "This website will be ready soon...")),
+        React.createElement("h1", null, "Hi there!"),
+        React.createElement("p", null,
+            "This website is still under construction.",
+            React.createElement("br", null),
+            "Placeholder Text. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit tempore doloribus cupiditate! Exercitationem sequi sed inventore, voluptates similique nostrum quos eaque quidem dolorum cumque velit aut reiciendis est, illum corrupti?")),
     React.createElement("div", { className: "item" },
         React.createElement("h2", null, "Contact me"),
         React.createElement("form", { action: "https://formspree.io/nikolaj-kappler@web.de", method: "POST" },
