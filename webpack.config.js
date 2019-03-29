@@ -48,4 +48,12 @@ module.exports = [{
     },
 
     ...commonConfig,
+}, {
+    entry: "./src/sidebar/sidebar.ts",
+    output: {
+        filename: "sidebar.js",
+        path: __dirname + "/dist/sidebar"
+    },
+
+    ...commonConfig,
 }];

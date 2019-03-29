@@ -11,9 +11,15 @@ window.onload = function () {
 ReactDOM.render(
     <div className="splitter">
         <div className="item">
-            <h1>Stay tuned!</h1>
-            <img src="./dist/img/tired.png" />
-            <p>This website will be ready soon...</p>
+            <h1>Hi there!</h1>
+            <p>
+                This website is still under construction.<br />
+                However, there's already a bunch to discover =)<br />
+                Until the rest of the website is finished, why don't you have a look at my <span onClick={() => (window as any).sidebar.open()} style={{
+                    fontWeight: "bold",
+                    cursor: "pointer"
+                }}>Projects?</span>
+            </p>
         </div>
         <div className="item">
             <h2>Contact me</h2>
