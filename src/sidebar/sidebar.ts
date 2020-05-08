@@ -27,6 +27,7 @@ const attachMenu = () => {
       body {
         position: relative;
         min-height: 100vh;
+        padding-top: 65px;
       }
 
       a {
@@ -78,6 +79,10 @@ const attachMenu = () => {
         padding: 12px;
         height: 56px;
         background: #666;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 999;
       }
 
       .icon {
