@@ -35,6 +35,13 @@ const attachMenu = () => {
         text-decoration: none;
       }
 
+      [sidebarjs] p {
+        font-size: 16px;
+        text-align: left;
+        font-family: Arial, sans-serif;
+        color: rgba(0, 0, 0, .64);
+      }
+
       [sidebarjs] .img {
         display: block;
         width: 32px;
@@ -62,6 +69,10 @@ const attachMenu = () => {
 
       .img.centipede {
         background-image: url('https://nkappler.github.io/Centipede/favicon.png');
+      }
+
+      .img.customWidgets {
+        background-image: url('https://widgets.nkappler.de/docs/Widgets.png');
       }
 
       /* –––––––––––––––––––––––––––––––––––––––
@@ -202,13 +213,18 @@ const attachMenu = () => {
   const ctxmenu = document.createElement("a");
   ctxmenu.innerHTML = '<div class="img img-ctxmenu"></div>ctxmenu.js - a context menu generator';
   ctxmenu.href = "https://nkappler.github.io/ctxmenu";
-  const slimemap = document.createElement("a");
-  slimemap.innerHTML = '<div class="img slimemap"></div>slimeMap - a Slime Chunk Finder for Minecraft';
-  slimemap.href = "https://nkappler.github.io/slimemap";
+  // const slimemap = document.createElement("a");
+  // slimemap.innerHTML = '<div class="img slimemap"></div>slimeMap - a Slime Chunk Finder for Minecraft';
+  // slimemap.href = "https://nkappler.github.io/slimemap";
+  const customWidgets = document.createElement("a");
+  customWidgets.innerHTML = '<div class="img customWidgets"></div><p>Custom Widgets<br /><span style="font-size:12px">for SAP Analytics Cloud</span></p>';
+  customWidgets.href = "https://widgets.nkappler.de";
+
   const centipede = document.createElement("a");
   centipede.innerHTML = '<div class="img centipede"></div>Centipede - an Arcade Game';
   centipede.href = "https://nkappler.github.io/Centipede";
-  [home, ctxmenu, slimemap, centipede].forEach(elem => nav.appendChild(elem));
+
+  [home, ctxmenu, centipede, customWidgets].forEach(elem => nav.appendChild(elem));
   [menuheader, nav].forEach(elem => container.appendChild(elem));
   [header, container].forEach(elem => (document.body as any).prepend(elem));
 

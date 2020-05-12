@@ -40,14 +40,22 @@ module.exports = [{
     },
 
     ...commonConfig,
-}, {
-    entry: "./src/wip/home.tsx",
-    output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist/wip"
-    },
+// }, {
+//     entry: "./src/wip/home.tsx",
+//     output: {
+//         filename: "bundle.js",
+//         path: __dirname + "/dist/wip"
+//     },
 
-    ...commonConfig,
+//     ...commonConfig,
+// }, {
+//     entry: "./src/wip/jsonGenerator/index.tsx",
+//     output: {
+//         filename: "bundle.js",
+//         path: __dirname + "/dist/wip/jsonGenerator"
+//     },
+
+//     ...commonConfig,
 }, {
     entry: "./src/sidebar/sidebar.ts",
     output: {
