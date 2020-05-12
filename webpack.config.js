@@ -25,11 +25,11 @@ const commonConfig = {
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
-    // externals: {
-    //     "react": "React",
-    //     "react-dom": "ReactDOM",
-    //     "three": "THREE",
-    // }
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM",
+        "three": "THREE",
+    }
 };
 
 module.exports = [{
@@ -40,22 +40,22 @@ module.exports = [{
     },
 
     ...commonConfig,
-}, {
-    entry: "./src/wip/home.tsx",
-    output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist/wip"
-    },
+// }, {
+//     entry: "./src/wip/home.tsx",
+//     output: {
+//         filename: "bundle.js",
+//         path: __dirname + "/dist/wip"
+//     },
 
-    ...commonConfig,
-}, {
-    entry: "./src/wip/jsonGenerator/index.tsx",
-    output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist/wip/jsonGenerator"
-    },
+//     ...commonConfig,
+// }, {
+//     entry: "./src/wip/jsonGenerator/index.tsx",
+//     output: {
+//         filename: "bundle.js",
+//         path: __dirname + "/dist/wip/jsonGenerator"
+//     },
 
-    ...commonConfig,
+//     ...commonConfig,
 }, {
     entry: "./src/sidebar/sidebar.ts",
     output: {
