@@ -27,7 +27,7 @@ const attachMenu = () => {
       body {
         position: relative;
         min-height: 100vh;
-        padding-top: 65px;
+        padding-top: 56px;
       }
 
       a {
