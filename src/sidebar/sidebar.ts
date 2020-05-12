@@ -78,7 +78,7 @@ const attachMenu = () => {
       /* –––––––––––––––––––––––––––––––––––––––
                       Basic Demo
       –––––––––––––––––––––––––––––––––––––––– */
-      header {
+      navigation {
         display: -webkit-box;
         display: -ms-flexbox;
         display: -webkit-flex;
@@ -197,7 +197,7 @@ const attachMenu = () => {
   style2.innerText = styles2;
   document.head.appendChild(style2);
 
-  const header = document.createElement("header");
+  const header = document.createElement("navigation");
   const toggle = document.createElement("div");
   toggle.setAttribute("sidebarjs-toggle", undefined);
   toggle.className = "icon hamburger-icon";
@@ -228,7 +228,7 @@ const attachMenu = () => {
   [menuheader, nav].forEach(elem => container.appendChild(elem));
   [header, container].forEach(elem => (document.body as any).prepend(elem));
 
-  (window as any).sidebar = new SidebarElement();
+  (window as any).sidebar = new SidebarElement({});
 };
 
 document.readyState === "complete" ? attachMenu() : document.addEventListener("readystatechange", attachMenu);
