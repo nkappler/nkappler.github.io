@@ -81,22 +81,19 @@
     <h4>Loading...</h4>
     <script>
         var d = document.getElementsByTagName("svg")[0],
-            c = d.classList,
-            a = c.add,
-            r = c.remove,
             s = d.style,
             m = "marginLeft",
             t = setTimeout;
         function p() {
-            a("r");
-            r("l");
+            d.classList.add("r");
+            d.classList.remove("l");
             s[m] = "5%";
             t(function () {
-                a("l");
+                d.classList.add("l");
             }, 1500);
             t(function () {
                 s[m] = "-5%";
-                r("r");
+                d.classList.remove("r");
             }, 100);
         };
         setInterval(p, 2500);
