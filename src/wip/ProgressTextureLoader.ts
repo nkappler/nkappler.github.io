@@ -3,8 +3,8 @@ import * as THREE from "three";
 
 export class ProgressTextureLoader extends THREE.TextureLoader {
     private cache = THREE.Cache;
-    private textureLoader = new THREE.TextureLoader();
-    private fileLoader = new THREE.FileLoader();
+    private textureLoader: any = new THREE.TextureLoader();
+    private fileLoader: any = new THREE.FileLoader();
 
     public constructor() {
         super();
@@ -21,7 +21,7 @@ export class ProgressTextureLoader extends THREE.TextureLoader {
      *
      * The cache is in memory, so this will work even if the server doesn't return a cache-control header.
      */
-    public load(url: string, onLoad?: (texture: THREE.Texture) => void, onProgress?: (event: ProgressEvent) => void, onError?: (event: ErrorEvent) => void): null | THREE.Texture {
+    public load(url: string, onLoad?: (texture: any /*THREE.Texture*/) => void, onProgress?: (event: ProgressEvent) => void, onError?: (event: ErrorEvent) => void): null | any /*THREE.Texture*/ {
         /**
          * The cache is currently storing a Blob, but we need to cast it to an Image
          * or else it won't work as a texture. TextureLoader won't do this automatically.

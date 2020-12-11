@@ -1,10 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "./styles/index.less";
+import "./sidebar/sidebar";
 
 window.onload = function () {
     if (document.location.href.indexOf("?sent") > 0) {
-        document.getElementById("sent").style.display = "block";
+        const elem = document.getElementById("sent");
+        elem && (elem.style.display = "block");
     }
 };
 
@@ -35,4 +37,4 @@ ReactDOM.render(
             <p id="sent" style={{ display: "none" }}>Thank you. Your message has been sent.</p>
         </div>
     </div>
-    , document.getElementById("root"));
+    , document.body);

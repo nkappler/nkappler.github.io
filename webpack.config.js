@@ -1,3 +1,7 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const commonConfig = {
 
     // Enable sourcemaps for debugging webpack's output.
@@ -17,51 +21,74 @@ const commonConfig = {
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+
+            {
+                test: /\.[svg|png|jpg]$/,
+                loader: "file-loader"
+            },
         ]
     },
 
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
-        "three": "THREE",
-    }
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "Nikolaj Kappler",
+            meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+        }),
+
+        // When importing a module whose path matches one of the following, just
+        // assume a corresponding global variable exists and use that instead.
+        // This is important because it allows us to avoid bundling all of our
+        // dependencies, which allows browsers to cache those libraries between builds.
+        new HtmlWebpackExternalsPlugin({
+            externals: [
+                {
+                    module: 'react',
+                    entry: 'https://unpkg.com/react@17/umd/react.production.min.js',
+                    global: "React"
+                }, {
+                    module: 'react-dom',
+                    entry: "https://unpkg.com/react-dom@16/umd/react-dom.production.min.js",
+                    global: "ReactDOM"
+                }, {
+                    module: "fonts",
+                    entry: {
+                        path: "https://fonts.googleapis.com/css?family=Lobster|Raleway",
+                        type: "css"
+                    }
+                }
+            ],
+            outputPath: ""
+        })
+    ],
 };
 
-module.exports = [{
-    entry: "./src/index.tsx",
-    output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist"
+module.exports = [
+    {
+        entry: "./src/index.tsx",
+        output: {
+            filename: "bundle.js",
+            path: __dirname + "/docs"
+        },
+
+        ...commonConfig,
     },
+    {
+        entry: "./src/sidebar/sidebar.ts",
+        output: {
+            filename: "sidebar.js",
+            path: __dirname + "/docs/sidebar"
+        },
 
-    ...commonConfig,
-// }, {
-//     entry: "./src/wip/home.tsx",
-//     output: {
-//         filename: "bundle.js",
-//         path: __dirname + "/dist/wip"
-//     },
-
-//     ...commonConfig,
-// }, {
-//     entry: "./src/wip/jsonGenerator/index.tsx",
-//     output: {
-//         filename: "bundle.js",
-//         path: __dirname + "/dist/wip/jsonGenerator"
-//     },
-
-//     ...commonConfig,
-}, {
-    entry: "./src/sidebar/sidebar.ts",
-    output: {
-        filename: "sidebar.js",
-        path: __dirname + "/dist/sidebar"
+        ...commonConfig,
     },
-
-    ...commonConfig,
-}];
+    // {
+    //     // plugins: [
+    //     //     new CopyWebpackPlugin({
+    //     //         patterns: [
+    //     //             { from: __dirname + "/src/img", to: __dirname + "/docs/img" }
+    //     //         ],
+    //     //     }),
+    //     // ],
+    // }
+];
