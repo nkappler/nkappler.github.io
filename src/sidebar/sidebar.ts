@@ -56,19 +56,19 @@ const attachMenu = () => {
       }
 
       .img.img-ctxmenu {
-        background-image: url('https://nkappler.github.io/ctxmenu/favicon_nc.png');
+        background-image: url('https://nkappler.de/ctxmenu/favicon_nc.png');
       }
 
       .img.home {
-        background-image: url('https://nkappler.github.io/sidebar/home.svg');
+        background-image: url('https://nkappler.de/img/home.svg');
       }
 
       .img.slimemap {
-        background-image: url('https://nkappler.github.io/slimemap/favicon.png');
+        background-image: url('https://nkappler.de/slimemap/favicon.png');
       }
 
       .img.centipede {
-        background-image: url('https://nkappler.github.io/Centipede/favicon.png');
+        background-image: url('https://nkappler.de/Centipede/favicon.png');
       }
 
       .img.customWidgets {
