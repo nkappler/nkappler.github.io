@@ -198,11 +198,11 @@ const attachMenu = () => {
   const nav = document.createElement("nav");
   const home = document.createElement("a");
   home.innerHTML = '<div class="img home"></div>Home';
-  home.href = "https://nkappler.github.io";
+  home.href = "https://nkappler.de";
   // home.className = "img github";
   const ctxmenu = document.createElement("a");
   ctxmenu.innerHTML = '<div class="img img-ctxmenu"></div>ctxmenu.js - a context menu generator';
-  ctxmenu.href = "https://nkappler.github.io/ctxmenu";
+  ctxmenu.href = "https://nkappler.de/ctxmenu";
   // const slimemap = document.createElement("a");
   // slimemap.innerHTML = '<div class="img slimemap"></div>slimeMap - a Slime Chunk Finder for Minecraft';
   // slimemap.href = "https://nkappler.github.io/slimemap";
