@@ -6,7 +6,7 @@
   "scripts": {
     "host": "http-server . -p 8000",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=development --watch",
+    "build": "webpack --mode=development --watch --config webpack.dev.js",
     "ship": "webpack --mode=production"
   },
   "repository": {

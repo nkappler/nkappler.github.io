@@ -20,6 +20,9 @@ const commonConfig = {
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+
         ]
     },
 
@@ -61,7 +64,7 @@ module.exports = [
         entry: "./src/index.tsx",
         output: {
             filename: "bundle.js",
-            path: __dirname + "/docs"
+            path: __dirname + "/dev"
         },
 
         ...commonConfig,
@@ -70,7 +73,16 @@ module.exports = [
         entry: "./src/sidebar/sidebar.ts",
         output: {
             filename: "sidebar.js",
-            path: __dirname + "/docs/sidebar"
+            path: __dirname + "/dev/sidebar"
+        },
+
+        ...commonConfig,
+    },
+    {
+        entry: "./src/wip/pathfinding/index.tsx",
+        output: {
+            filename: "padthfinding.js",
+            path: __dirname + "/dev/pathfinding"
         },
 
         ...commonConfig,

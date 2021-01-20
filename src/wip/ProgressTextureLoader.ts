@@ -1,5 +1,6 @@
 // original source from: https://github.com/mrdoob/three.js/issues/10439
-import * as THREE from "three";
+// import * as THREE from "three";
+declare const THREE: any;
 
 export class ProgressTextureLoader extends THREE.TextureLoader {
     private cache = THREE.Cache;
