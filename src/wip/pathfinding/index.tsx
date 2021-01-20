@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
 import * as ReactDOM from "react-dom";
 import { UndirectedWeightedGraph } from "./resources_temp/graph/graph";
 import { IVertex, VertexWithWeightedEdges } from "./resources_temp/graph/vertex";
@@ -29,9 +29,9 @@ interface ISquareProps {
     drawing: boolean;
 }
 
-const Square: React.FunctionComponent<ISquareProps> = props => {
+const Square: FunctionComponent<ISquareProps> = props => {
     const { id, children, graph, result, drawing } = props;
-    const [needUpdate, update] = React.useState(true);
+    const [needUpdate, update] = useState(true);
 
     const backgroundColor: string = graph.getVertex(id) ?
         result?.Path.includes(id) ?
@@ -70,14 +70,14 @@ const Square: React.FunctionComponent<ISquareProps> = props => {
 }
 
 const Container = () => {
-    const [gridSize, setGridSize] = React.useState(0);
-    const [width, setWidth] = React.useState(0);
-    const [graph, setGraph] = React.useState(new UndirectedWeightedGraph());
-    const [grid, setGrid] = React.useState<VertexWithWeightedEdges[][]>([]);
+    const [gridSize, setGridSize] = useState(0);
+    const [width, setWidth] = useState(0);
+    const [graph, setGraph] = useState(new UndirectedWeightedGraph());
+    const [grid, setGrid] = useState<VertexWithWeightedEdges[][]>([]);
 
-    const [isDrawing, setDrawing] = React.useState(false);
+    const [isDrawing, setDrawing] = useState(false);
 
-    const resize = React.useCallback(() => {
+    const resize = useCallback(() => {
         const maxWidth = window.innerWidth - 600;
         const count = Math.round(maxWidth / size);
         if (count !== gridSize) {
@@ -86,7 +86,7 @@ const Container = () => {
         }
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const _graph = new UndirectedWeightedGraph();
         const _grid: VertexWithWeightedEdges[][] = [];
 
@@ -118,13 +118,13 @@ const Container = () => {
         setGraph(_graph);
     }, [gridSize]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         resize();
         window.addEventListener("resize", resize);
         return () => window.removeEventListener("resize", resize);
     }, []);
 
-    const [result, setResult] = React.useState<ReturnType<typeof A_Star>>();
+    const [result, setResult] = useState<ReturnType<typeof A_Star>>();
 
     return <>
         <button onClick={() => {
